@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    // Carpetas
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Node.js clásico
+    "module": "commonjs",
+    "target": "es6",
+    "esModuleInterop": true,
+    "types": ["node"],
+
+    // Archivos de salida
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Reglas estrictas recomendadas
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Evitar problemas con librerías sin tipos
+    "skipLibCheck": true
+  }
+}
