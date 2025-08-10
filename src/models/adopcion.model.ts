@@ -11,14 +11,15 @@ export const getAdopcionById = async (id: number) => {
 };
 
 export const createAdopcion = async (data: {
-    id_persona: number;
-    id_mascota: number;
+    persona_id: number;
+    mascota_id: number;
+    fecha_visita: string;
     fecha_adopcion: string;
-    observaciones?: string;
+    estado: string;
 }) => {
     const [result] = await pool.query(
-        'INSERT INTO adopcion (id_persona, id_mascota, fecha_adopcion, observaciones) VALUES (?, ?, ?, ?)',
-        [data.id_persona, data.id_mascota, data.fecha_adopcion, data.observaciones || null]
+        'INSERT INTO adopcion (persona_id, mascota_id, fecha_visita, fecha_adopcion, estado) VALUES (?, ?, ?, ?, ?)',
+        [data.persona_id, data.mascota_id, data.fecha_visita, data.fecha_adopcion, data.estado || null]
     );
     return { id: (result as any).insertId, ...data };
 };
@@ -26,10 +27,11 @@ export const createAdopcion = async (data: {
 export const updateAdopcion = async (
     id: number,
     data: {
-        id_persona?: number;
-        id_mascota?: number;
+        persona_id?: number;
+        mascota_id?: number;
+        fecha_visita?: string;
         fecha_adopcion?: string;
-        observaciones?: string;
+        estado?: string;
     }
 ) => {
     await pool.query('UPDATE adopcion SET ? WHERE id = ?', [data, id]);

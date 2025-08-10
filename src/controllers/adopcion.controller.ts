@@ -28,16 +28,18 @@ export const getAdopcionById = async (req: Request, res: Response) => {
 
 // Crear adopción
 export const createAdopcion = async (req: Request, res: Response) => {
-    const { id_persona, id_mascota, fecha_adopcion, observaciones } = req.body;
-    if (!id_persona || !id_mascota || !fecha_adopcion) {
+    console.log(req.body);
+    const { persona_id, mascota_id, fecha_visita, fecha_adopcion, estado } = req.body;
+    if (!persona_id || !mascota_id || !fecha_visita || !fecha_adopcion || !estado) {
         return res.status(400).json({ message: 'Datos incompletos' });
     }
     try {
         const adopcion = await AdopcionModel.createAdopcion({
-            id_persona,
-            id_mascota,
+            persona_id,
+            mascota_id,
+            fecha_visita,
             fecha_adopcion,
-            observaciones,
+            estado,
         });
         res.status(201).json(adopcion);
     } catch (error) {
